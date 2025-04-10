@@ -7,7 +7,7 @@ configurations {
 }
 
  ext {
-     browserupProxyVersion = '3.1.2'
+     browserupProxyVersion = '3.2.0'
 }
 
  dependencies {
@@ -19,7 +19,7 @@ configurations {
      implementation project(':vividus-soft-assert')
      api project(':vividus-extension-ui')
 
-     api platform(group: 'org.seleniumhq.selenium', name: 'selenium-bom', version: '4.29.0')
+     api platform(group: 'org.seleniumhq.selenium', name: 'selenium-bom', version: '4.31.0')
      api(group: 'org.seleniumhq.selenium', name: 'selenium-api')
      api(group: 'org.seleniumhq.selenium', name: 'selenium-support')
      api(group: 'org.seleniumhq.selenium', name: 'selenium-remote-driver')
@@ -38,17 +38,17 @@ configurations {
      implementation platform(group: 'org.slf4j', name: 'slf4j-bom', version: '2.0.17')
      implementation(group: 'org.slf4j', name: 'slf4j-api')
      implementation(group: 'org.apache.commons', name: 'commons-lang3', version: '3.17.0')
-     implementation platform(group: 'org.springframework', name: 'spring-framework-bom', version: '6.2.3')
+     implementation platform(group: 'org.springframework', name: 'spring-framework-bom', version: '6.2.5')
      implementation(group: 'org.springframework', name: 'spring-core')
      implementation(group: 'org.springframework', name: 'spring-context')
 
      compileOnly(group: 'com.github.spotbugs', name: 'spotbugs-annotations', version: spotbugsVersion)
 
-     testImplementation platform(group: 'org.junit', name: 'junit-bom', version: '5.12.0')
+     testImplementation platform(group: 'org.junit', name: 'junit-bom', version: '5.12.1')
      testImplementation(group: 'org.junit.jupiter', name: 'junit-jupiter')
     testRuntimeOnly('org.junit.platform:junit-platform-launcher')
      testImplementation(group: 'org.hamcrest', name: 'hamcrest', version: '3.0')
-     testImplementation platform(group: 'org.mockito', name: 'mockito-bom', version: '5.16.0')
+     testImplementation platform(group: 'org.mockito', name: 'mockito-bom', version: '5.17.0')
      testImplementation(group: 'org.mockito', name: 'mockito-junit-jupiter')
      testImplementation(group: 'com.github.valfirst', name: 'slf4j-test', version: '3.0.1')
  }

@@ -278,14 +278,26 @@ jobs:
       shell: bash
       run: |
         if [[ -n $SAUCELABS_USER && -n $SAUCELABS_KEY ]]; then
-          declare -a profiles=( iexplore chrome firefox edge safari )
+          declare -a profiles=( chrome firefox edge )
           for profile in "${profiles[@]}"; do
             ./gradlew :vividus-tests:debugStories -Pvividus.configuration.environments=system/saucelabs \
                                                   -Pvividus.configuration.suites=health_check \
                                                   -Pvividus.configuration.profiles=saucelabs/web,web/desktop/${profile} \
                                                   -Pvividus.selenium.grid.username=${SAUCELABS_USER} \
-                                                  -Pvividus.selenium.grid.password=${SAUCELABS_KEY}
+                                                  -Pvividus.selenium.grid.password=${SAUCELABS_KEY} \
+                                                  -Pvividus.selenium.grid.capabilities.platformName="Windows 11"
           done
+          ./gradlew :vividus-tests:debugStories -Pvividus.configuration.environments=system/saucelabs \
+                                                -Pvividus.configuration.suites=health_check \
+                                                -Pvividus.configuration.profiles=saucelabs/web,web/desktop/iexplore \
+                                                -Pvividus.selenium.grid.username=${SAUCELABS_USER} \
+                                                -Pvividus.selenium.grid.password=${SAUCELABS_KEY}
+
+          ./gradlew :vividus-tests:debugStories -Pvividus.configuration.environments=system/saucelabs \
+                                                -Pvividus.configuration.suites=health_check \
+                                                -Pvividus.configuration.profiles=saucelabs/web,web/desktop/safari \
+                                                -Pvividus.selenium.grid.username=${SAUCELABS_USER} \
+                                                -Pvividus.selenium.grid.password=${SAUCELABS_KEY}
         else
             echo No SAUCELABS_USER and/or SAUCELABS_KEY, SauceLabs system tests will be skipped
         fi
@@ -329,7 +341,8 @@ jobs:
                                                 -Pvividus.batch-1.resource-location=story/integration \
                                                 -Pvividus.batch-1.resource-include-patterns=ProxyStepsTests.story \
                                                 -Pvividus.selenium.grid.username=${SAUCELABS_USER} \
-                                                -Pvividus.selenium.grid.password=${SAUCELABS_KEY} \
+                                                -Pvividus.selenium.grid.password=${SAUCELABS_KEY}  \
+                                                -Pvividus.selenium.grid.capabilities.platformName="Windows 11" \
                                                 -Pvividus.saucelabs.sauce-connect.command-line-arguments="--proxy-localhost --no-ssl-bump-domains example.com,vividus-test-site-a92k.onrender.com"
         else
             echo No SAUCELABS_USER and/or SAUCELABS_KEY, SauceLabs system tests will be skipped
@@ -545,7 +558,7 @@ jobs:
                                                   -Pvividus.configuration.profiles=saucelabs/web,web/tablet/${profile} \
                                                   -Pvividus.configuration.suites=system \
                                                   -Pvividus.batch-1.resource-include-patterns=HealthCheck.story,IPadVisualStepsTests.story \
-                                                  -Pvividus.selenium.grid.capabilities.deviceName="iPad (6th generation) Simulator" \
+                                                  -Pvividus.selenium.grid.capabilities.deviceName="iPad (7th generation) Simulator" \
                                                   -Pvividus.selenium.grid.username=${SAUCELABS_USER} \
                                                   -Pvividus.selenium.grid.password=${SAUCELABS_KEY}
           done
@@ -797,7 +810,7 @@ jobs:
                                                 -Pvividus.allure.executor.build-url=https://github.com/vividus-framework/vividus/actions/runs/${GITHUB_RUN_ID} \
                                                 -Pvividus.allure.executor.report-url=https://github.com/vividus-framework/vividus/actions/runs/${GITHUB_RUN_ID} \
                                                 -Pvividus.allure.executor.report-name="BrowserStack iOS System tests report" \
-                                                -Pvividus.variables.app-url=bs://f968061a2fc9680eff592d87e2b1cfe623a79459 \
+                                                -Pvividus.variables.app-url=bs://82304ee9907f4ceb4c5db09519f0d45ee537f449 \
                                                 -Pvividus.notifications.base.comment="VIVIDUS CI - BrowserStack iOS System Tests" \
                                                 -Pvividus.notifications.base.report-link=https://github.com/vividus-framework/vividus/actions/runs/${GITHUB_RUN_ID} \
                                                 -Pvividus.notifications.base.project=vividus-tests \
@@ -838,7 +851,7 @@ jobs:
                                                 -Pvividus.allure.executor.build-url=https://github.com/vividus-framework/vividus/actions/runs/${GITHUB_RUN_ID} \
                                                 -Pvividus.allure.executor.report-url=https://github.com/vividus-framework/vividus/actions/runs/${GITHUB_RUN_ID} \
                                                 -Pvividus.allure.executor.report-name="BrowserStack Android System tests report" \
-                                                -Pvividus.variables.app-url=bs://9d822d48132d61d848244f4822901ecd91b6cba2
+                                                -Pvividus.variables.app-url=bs://eaff5d456dfeca3e1a10e8a654d368f4c8cc8010
 
       - name: BrowserStack - Android - Mobile App - Publish system tests report
         if: always()

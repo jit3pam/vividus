@@ -9,7 +9,7 @@ dependencies {
     implementation project(':vividus-test-context')
     implementation project(':vividus-util')
 
-    implementation platform(group: 'org.springframework', name: 'spring-framework-bom', version: '6.2.3')
+    implementation platform(group: 'org.springframework', name: 'spring-framework-bom', version: '6.2.5')
     implementation(group: 'org.springframework', name: 'spring-web')
     implementation(group: 'org.apache.commons', name: 'commons-lang3', version: '3.17.0')
     implementation(group: 'com.github.vividus-framework.JsonPath', name: 'json-path', version: versions.jsonPath)
@@ -18,10 +18,10 @@ dependencies {
     implementation(group: 'org.apache.tika', name: 'tika-core', version: '3.1.0')
     implementation(group: 'jakarta.inject', name: 'jakarta.inject-api', version: '2.0.1')
 
-    testImplementation platform(group: 'org.junit', name: 'junit-bom', version: '5.12.0')
+    testImplementation platform(group: 'org.junit', name: 'junit-bom', version: '5.12.1')
     testImplementation(group: 'org.junit.jupiter', name: 'junit-jupiter')
     testRuntimeOnly('org.junit.platform:junit-platform-launcher')
-    testImplementation platform(group: 'org.mockito', name: 'mockito-bom', version: '5.16.0')
+    testImplementation platform(group: 'org.mockito', name: 'mockito-bom', version: '5.17.0')
     testImplementation(group: 'org.mockito', name: 'mockito-junit-jupiter')
     testImplementation(group: 'com.github.valfirst', name: 'slf4j-test', version: '3.0.1')
 }

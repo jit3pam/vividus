@@ -14,21 +14,27 @@
  * limitations under the License.
  */
 
-package org.vividus.csv;
+package org.vividus.json.expression;
 
-import org.apache.commons.csv.CSVFormat;
+import org.jbehave.core.expressions.SingleArgExpressionProcessor;
+import org.vividus.util.json.JsonUtils;
 
-public class CsvFormatFactory
+public class JsonExpressionProcessor extends SingleArgExpressionProcessor<String>
 {
-    private final CSVFormat csvFormat;
+    private static final JsonUtils JSON_UTILS = new JsonUtils();
 
-    public CsvFormatFactory(char delimiter, Character escape)
+    JsonExpressionProcessor()
     {
-        this.csvFormat = CSVFormat.DEFAULT.builder().setDelimiter(delimiter).setEscape(escape).get();
+        super("formatToOneLineJson", JsonExpressionProcessor::formatToOneLineJson);
     }
 
-    public CSVFormat getCsvFormat()
+    /**
+     * Formats any JSON into a one line.
+     * @param json the input JSON
+     * @return one line formatted JSON
+     */
+    private static String formatToOneLineJson(String json)
     {
-        return csvFormat;
+        return JSON_UTILS.readTree(json).toString();
     }
 }
