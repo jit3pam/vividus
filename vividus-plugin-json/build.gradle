@@ -8,7 +8,11 @@ dependencies {
     api(group: 'net.javacrumbs.json-unit', name: 'json-unit', version: '4.1.0')
     implementation(group: 'com.github.vividus-framework.JsonPath', name: 'json-path', version: versions.jsonPath)
     implementation(group: 'com.github.vividus-framework.JsonPath', name: 'json-path-assert', version: versions.jsonPath)
-    implementation(group: 'com.flipkart.zjsonpatch', name: 'zjsonpatch', version: '0.4.16')
+    implementation(group: 'com.flipkart.zjsonpatch', name: 'zjsonpatch', version: '0.4.16'){
+        // exclude because of CWE-400
+        exclude group: 'com.fasterxml.jackson.core', module: 'jackson-core'
+    }
+    implementation(group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: '2.15.0-rc1')
     implementation platform(group: 'io.qameta.allure', name: 'allure-bom', version: '2.29.0')
     implementation(group: 'io.qameta.allure', name: 'allure-jsonunit') {
         exclude (group: 'io.qameta.allure')
