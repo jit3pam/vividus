@@ -8,7 +8,7 @@ dependencies {
     api(group: 'net.javacrumbs.json-unit', name: 'json-unit', version: '4.1.0')
     implementation(group: 'com.github.vividus-framework.JsonPath', name: 'json-path', version: versions.jsonPath)
     implementation(group: 'com.github.vividus-framework.JsonPath', name: 'json-path-assert', version: versions.jsonPath)
-    implementation(group: 'com.flipkart.zjsonpatch', name: 'zjsonpatch', version: '0.4.16'){
+    implementation(group: 'com.flipkart.zjsonpatch', name: 'zjsonpatch', version: '0.4.16') {
         // exclude because of CWE-400
         exclude group: 'com.fasterxml.jackson.core', module: 'jackson-core'
     }
